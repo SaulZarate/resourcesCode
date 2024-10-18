@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Drag and Drop Sortable List</title>
+
+    <style>
+        #sortable{
+            background-color: #ddd; 
+            padding: 1em;
+            width: 50%;
+            text-align: center;
+        }
+        ul > li{
+            background-color: #616161;
+            margin-bottom: .5em;
+            padding: .5em 0;
+            color: #fff;
+            list-style-type: none; 
+        }
+        .iconMove{
+            cursor: pointer;
+            margin-right: 0.5em;
+        }
+    </style>
+</head>
+ 
+<body>
+    <ul id="sortable">
+        <li data-id="1"><span class="iconMove">+</span>Item 1</li>
+        <li data-id="2"><span class="iconMove">+</span>Item 2</li>
+        <li data-id="3"><span class="iconMove">+</span>Item 3</li>
+        <li data-id="4"><span class="iconMove">+</span>Item 4</li>
+        <li data-id="5"><span class="iconMove">+</span>Item 5</li>
+    </ul>
+    
+    <script src="./main.js"></script>
+
+    <script>
+         
+        /* let sortable = null */
+        new Sortable(document.getElementById('sortable'), {
+            handle: '.iconMove',
+            animation: 150,
+            onUpdate: function(evt) {
+                console.log("Cambio el orden de la lista")
+            },
+            store: {
+                set: function (sortable) {
+                    const order = sortable.toArray();
+                    console.log(order) // Nuevo orden
+
+                    // Setea el orden usando un array de ids
+                    /* sortable.sort(order.reverse(), true); */
+                }
+            }
+        });
+
+
+    </script>
+</body>
+ 
+</html>
